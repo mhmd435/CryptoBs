@@ -1,4 +1,4 @@
-package com.example.crypto_app.HomeFragment;
+package com.example.crypto_app.HomeFragment.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.crypto_app.HomeFragment.Model.SliderImageModel;
 import com.example.crypto_app.R;
 import com.example.crypto_app.databinding.SliderImageItemBinding;
 

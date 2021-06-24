@@ -1,10 +1,10 @@
-package com.example.crypto_app.HomeFragment;
+package com.example.crypto_app.HomeFragment.Model;
 
 public class SliderImageModel {
 
     private int image;
 
-    SliderImageModel(int image) {
+    public SliderImageModel(int image) {
         this.image = image;
     }
 
