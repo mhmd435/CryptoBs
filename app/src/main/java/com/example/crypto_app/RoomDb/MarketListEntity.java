@@ -4,10 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.crypto_app.HomeFragment.Model.AllMarketModel;
+import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
 
 @Entity(tableName = "AllMarket")
-public class RoomMarketEntity {
+public class MarketListEntity {
 
     @PrimaryKey
     public int uid;
@@ -15,7 +15,7 @@ public class RoomMarketEntity {
     @ColumnInfo(name = "AllMarket")
     public AllMarketModel allMarketModel;
 
-    public RoomMarketEntity(AllMarketModel allMarketModel) {
+    public MarketListEntity(AllMarketModel allMarketModel) {
         this.allMarketModel = allMarketModel;
     }
 

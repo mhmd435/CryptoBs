@@ -1,56 +1,29 @@
-package com.example.crypto_app.HomeFragment.Model;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package com.example.crypto_app.Model.CryptoListModel;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class AllMarketModel implements Parcelable {
+public class AllMarketModel {
 
 	@SerializedName("data")
 	private List<DataItem> data;
 
 	@SerializedName("status")
-	private Status status;
-
-	protected AllMarketModel(Parcel in) {
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	public static final Creator<AllMarketModel> CREATOR = new Creator<AllMarketModel>() {
-		@Override
-		public AllMarketModel createFromParcel(Parcel in) {
-			return new AllMarketModel(in);
-		}
-
-		@Override
-		public AllMarketModel[] newArray(int size) {
-			return new AllMarketModel[size];
-		}
-	};
+	private ListStatus listStatus;
 
 	public List<DataItem> getData(){
 		return data;
 	}
 
-	public Status getStatus(){
-		return status;
+	public ListStatus getStatus(){
+		return listStatus;
 	}
 
 
 
 
 
-	public static class Status{
+	public static class ListStatus {
 
 		@SerializedName("error_message")
 		private String errorMessage;

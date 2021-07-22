@@ -1,6 +1,7 @@
-package com.example.crypto_app.HomeFragment.Model;
+package com.example.crypto_app.Model.CryptoListModel;
 
 import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
 public class DataItem{
@@ -30,7 +31,7 @@ public class DataItem{
 	private String dateAdded;
 
 	@SerializedName("quote")
-	private Quote quote;
+	private ListQuote listQuote;
 
 	@SerializedName("num_market_pairs")
 	private int numMarketPairs;
@@ -79,8 +80,8 @@ public class DataItem{
 		return dateAdded;
 	}
 
-	public Quote getQuote(){
-		return quote;
+	public ListQuote getQuote(){
+		return listQuote;
 	}
 
 	public int getNumMarketPairs(){
@@ -106,12 +107,12 @@ public class DataItem{
 
 
 
-	public static class Quote{
+	public static class ListQuote {
 
 		@SerializedName("USD")
-		private USD uSD;
+		private ListUSD uSD;
 
-		public USD getUSD(){
+		public ListUSD getUSD(){
 			return uSD;
 		}
 	}

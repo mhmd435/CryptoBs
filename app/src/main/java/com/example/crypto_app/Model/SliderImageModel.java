@@ -1,4 +1,4 @@
-package com.example.crypto_app.HomeFragment.Model;
+package com.example.crypto_app.Model;
 
 public class SliderImageModel {
 

@@ -2,16 +2,16 @@ package com.example.crypto_app.RoomDb;
 
 import androidx.room.TypeConverter;
 
-import com.example.crypto_app.HomeFragment.Model.AllMarketModel;
+import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class DataConverter {
+public class AllMarketModelConverter {
 
     @TypeConverter
-    public String fromCountryLangList(AllMarketModel allMarketModel) {
+    public String tojson(AllMarketModel allMarketModel) {
         if (allMarketModel == null) {
             return (null);
         }
@@ -22,7 +22,7 @@ public class DataConverter {
     }
 
     @TypeConverter
-    public AllMarketModel toCountryLangList(String allMarket) {
+    public AllMarketModel toDataClass(String allMarket) {
         if (allMarket == null) {
             return (null);
         }

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.crypto_app.HomeFragment.Model.DataItem;
+import com.example.crypto_app.Model.CryptoListModel.DataItem;
 import com.example.crypto_app.R;
 import com.example.crypto_app.databinding.TopmarketItemBinding;
 
@@ -23,7 +23,7 @@ public class TopCoinRvAdapter extends RecyclerView.Adapter<TopCoinRvAdapter.TopC
 
     LayoutInflater layoutInflater;
     ArrayList<DataItem> dataItems;
-    int[] icon_logo = {R.drawable.btc,R.drawable.eth,R.drawable.bnb,R.drawable.ada,R.drawable.xrp,R.drawable.doge,R.drawable.dot,R.drawable.uni,R.drawable.ltc,R.drawable.link};
+    int[] icon_logo = {R.drawable.btc,R.drawable.eth,R.drawable.bnb,R.drawable.ada,R.drawable.doge,R.drawable.xrp,R.drawable.dot,R.drawable.uni,R.drawable.ltc,R.drawable.link};
 
 
     public TopCoinRvAdapter(ArrayList<DataItem> dataItems) {
@@ -51,6 +51,12 @@ public class TopCoinRvAdapter extends RecyclerView.Adapter<TopCoinRvAdapter.TopC
     @Override
     public int getItemCount() {
         return dataItems.size();
+    }
+
+    public void updateData(ArrayList<DataItem> newdata) {
+        dataItems.clear();
+        dataItems.addAll(newdata);
+        notifyDataSetChanged();
     }
 
 

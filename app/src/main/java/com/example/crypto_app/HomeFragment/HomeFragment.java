@@ -1,20 +1,8 @@
 package com.example.crypto_app.HomeFragment;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.content.res.TypedArray;
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
-
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,16 +12,34 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.crypto_app.ViewModel.AppViewModel;
 import com.example.crypto_app.HomeFragment.Adapters.TopCoinRvAdapter;
 import com.example.crypto_app.HomeFragment.Adapters.TopGainLosersAdapter;
 import com.example.crypto_app.HomeFragment.Adapters.sliderImageAdapter;
-import com.example.crypto_app.HomeFragment.Model.AllMarketModel;
-import com.example.crypto_app.HomeFragment.Model.DataItem;
-import com.example.crypto_app.HomeFragment.Model.SliderImageModel;
+import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
+import com.example.crypto_app.Model.CryptoListModel.DataItem;
+import com.example.crypto_app.Model.SliderImageModel;
+import com.example.crypto_app.MainActivity;
 import com.example.crypto_app.R;
-import com.example.crypto_app.RoomDb.RoomMarketEntity;
 import com.example.crypto_app.databinding.FragmentHomeBinding;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.jetbrains.annotations.NotNull;
@@ -41,12 +47,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomeFragment extends Fragment {
@@ -54,30 +58,87 @@ public class HomeFragment extends Fragment {
     public List<String> top_wants = Arrays.asList("BTC","ETH","BNB","ADA","XRP","DOGE","DOT","UNI","LTC","LINK");
 
     FragmentHomeBinding fragmentHomeBinding;
-    HomeViewModel homeViewModel;
+    AppViewModel appViewModel;
 
+    MainActivity mainActivity;
     CompositeDisposable compositeDisposable;
     TopCoinRvAdapter topCoinRvAdapter;
+    TopGainLosersAdapter topGainLosersAdapter;
+
+    @Override
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setupToolbar(view);
+    }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         compositeDisposable = new CompositeDisposable();
+
 
         // Inflate the layout for this fragment by dataBinding
         fragmentHomeBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false);
 
         setupViewModel();
         setupImageSlider();
-        callApiReqoest();
+        setupSwipeRefreshLayout();
         getAllMarketDataFromDb();
+        setupTablayoutTapGainLose(fragmentHomeBinding.topGainIndicator,fragmentHomeBinding.topLoseIndicator);
 
         return fragmentHomeBinding.getRoot();
     }
 
-    private void setupTablayoutTapGainLose(View topGainIndicator, View topLoseIndicator, AllMarketModel allMarketModel) {
+    @Override
+    public void onAttach(@NonNull @NotNull Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) context;
+    }
 
-        fragmentHomeBinding.viewPager2.setAdapter(new TopGainLosersAdapter(this,allMarketModel));
+    private void setupToolbar(View view) {
+        NavController navController = Navigation.findNavController(view);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment)
+                .setOpenableLayout(mainActivity.drawerLayout)
+                .build();
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+
+
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull @NotNull NavController controller, @NonNull @NotNull NavDestination destination, @Nullable @org.jetbrains.annotations.Nullable Bundle arguments) {
+                if (destination.getId() == R.id.homeFragment){
+                    toolbar.setNavigationIcon(R.drawable.ic_baseline_sort_35);
+                    toolbar.setTitle("CoinEx");
+                }
+            }
+        });
+    }
+
+    private void setupSwipeRefreshLayout() {
+        fragmentHomeBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        fragmentHomeBinding.swipeRefresh.setRefreshing(false);
+                    }
+                },1500);
+                mainActivity.callAllApiReqoest();
+            }
+        });
+    }
+
+
+
+    private void setupTablayoutTapGainLose(View topGainIndicator, View topLoseIndicator) {
+            topGainLosersAdapter = new TopGainLosersAdapter(this);
+            fragmentHomeBinding.viewPager2.setAdapter(topGainLosersAdapter);
+
+
         //Anim for In and out view tablayout
         Animation gainAnimIn = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_from_left);
         Animation gainAnimOut = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_out_left);
@@ -108,74 +169,55 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        new TabLayoutMediator(fragmentHomeBinding.tablayout, fragmentHomeBinding.viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull @NotNull TabLayout.Tab tab, int position) {
-                if (position == 0){
-                    tab.setText("TopGainers");
-                }else {
-                    tab.setText("TopLosers");
-                }
+        new TabLayoutMediator(fragmentHomeBinding.tablayout, fragmentHomeBinding.viewPager2, (tab, position) -> {
+            if (position == 0){
+                tab.setText("TopGainers");
+            }else {
+                tab.setText("TopLosers");
             }
         }).attach();
     }
 
-    private void callApiReqoest() {
-        try {
-            //disposable for avoid memory leak
-            Disposable disposable = homeViewModel.makeFutureQuery().get()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<AllMarketModel>() {
-                        @Override
-                        public void accept(AllMarketModel allMarketModel) throws Throwable {
-                            homeViewModel.insertAllMarket(allMarketModel);
-                        }
-                    });
-            compositeDisposable.add(disposable);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void getAllMarketDataFromDb() {
-        Disposable disposable = homeViewModel.getAllMarketData()
+        Disposable disposable = appViewModel.getAllMarketData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<RoomMarketEntity>() {
-                    @Override
-                    public void accept(RoomMarketEntity roomMarketEntity) throws Throwable {
-                        AllMarketModel allMarketModel = roomMarketEntity.getAllMarketModel();
+                .subscribe(roomMarketEntity -> {
+                    AllMarketModel allMarketModel = roomMarketEntity.getAllMarketModel();
 
-                        ArrayList<DataItem> top10 = new ArrayList<>();
-                        top10.clear();
-                        for (int i = 0;i < allMarketModel.getData().size();i++){
-                            for (int j = 0;j < top_wants.size();j++){
-                                String coin_name = top_wants.get(j);
-                                if (allMarketModel.getData().get(i).getSymbol().equals(coin_name)){
-                                    DataItem dataItem = allMarketModel.getData().get(i);
-                                    top10.add(dataItem);
-                                }
+                    ArrayList<DataItem> top10 = new ArrayList<>();
+                    for (int i = 0;i < allMarketModel.getData().size();i++){
+                        for (int j = 0;j < top_wants.size();j++){
+                            String coin_name = top_wants.get(j);
+                            if (allMarketModel.getData().get(i).getSymbol().equals(coin_name)){
+                                DataItem dataItem = allMarketModel.getData().get(i);
+                                top10.add(dataItem);
                             }
                         }
+                    }
+                    Log.e("TAG", "getAllMarketDataFromDb: " + allMarketModel.getData().size() );
 
-                        setupTablayoutTapGainLose(fragmentHomeBinding.topGainIndicator,fragmentHomeBinding.topLoseIndicator,allMarketModel);
+
+
+                    if (fragmentHomeBinding.TopCoinRv.getAdapter() != null){
+                        topCoinRvAdapter = (TopCoinRvAdapter) fragmentHomeBinding.TopCoinRv.getAdapter();
+                        topCoinRvAdapter.updateData(top10);
+                    }else {
                         topCoinRvAdapter = new TopCoinRvAdapter(top10);
                         fragmentHomeBinding.TopCoinRv.setAdapter(topCoinRvAdapter);
-
                     }
+
                 });
         compositeDisposable.add(disposable);
     }
 
     private void setupViewModel() {
-        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        appViewModel = new ViewModelProvider(requireActivity()).get(AppViewModel.class);
     }
 
     private void setupImageSlider() {
-        homeViewModel.getImage().observe(getViewLifecycleOwner(), new Observer<ArrayList<SliderImageModel>>() {
+        appViewModel.getImage().observe(getViewLifecycleOwner(), new Observer<ArrayList<SliderImageModel>>() {
             @Override
             public void onChanged(ArrayList<SliderImageModel> sliderImageModels) {
 
@@ -194,15 +236,11 @@ public class HomeFragment extends Fragment {
                 });
 
                 CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-                compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-                compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-                    @Override
-                    public void transformPage(@NonNull View page, float position) {
-                        float r = 1 - Math.abs(position);
-                        page.setScaleY(0.85f + r * 0.15f);
-                    }
+                compositePageTransformer.addTransformer(new MarginPageTransformer(10));
+                compositePageTransformer.addTransformer((page, position) -> {
+                    float r = 1 - Math.abs(position);
+                    page.setScaleY(0.85f + r * 0.15f);
                 });
-
                 fragmentHomeBinding.viewPagerImageSlider.setPageTransformer(compositePageTransformer);
 
             }

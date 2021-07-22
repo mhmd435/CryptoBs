@@ -29,8 +29,8 @@
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/chart"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
+                    android:layout_width="110dp"
+                    android:layout_height="55dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +58,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.32"
                     tools:text="TextView" />
 
                 <TextView
@@ -89,6 +90,18 @@
                     app:layout_constraintBottom_toBottomOf="@+id/GLcoinChange"
                     app:layout_constraintEnd_toStartOf="@+id/GLcoinChange"
                     app:layout_constraintTop_toTopOf="@+id/GLcoinChange" />
+
+                <TextView
+                    android:id="@+id/GLcoinSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:textAlignment="viewStart"
+                    android:textColor="#C3595959"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/GLCoinName"
+                    tools:text="TextView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

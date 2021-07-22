@@ -7,14 +7,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.example.crypto_app.HomeFragment.Model.AllMarketModel;
-
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-
-@TypeConverters(DataConverter.class)
-@Database(entities = {RoomMarketEntity.class},version = 1)
+@TypeConverters({AllMarketModelConverter.class,CryptoDataModelConverter.class})
+@Database(entities = {MarketListEntity.class,MarketDataEntity.class},version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String Db_Name = "AppDb";
