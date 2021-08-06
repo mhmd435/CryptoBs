@@ -3,8 +3,8 @@ package com.example.crypto_app.HomeFragment.Repository;
 import android.app.Application;
 import android.util.Log;
 
-import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
-import com.example.crypto_app.Model.CryptoMarketModel.CryptoMarketDataModel;
+import com.example.crypto_app.model.cryptolistmodel.AllMarketModel;
+import com.example.crypto_app.model.CryptoMarketModel.CryptoMarketDataModel;
 import com.example.crypto_app.RoomDb.AppDatabase;
 import com.example.crypto_app.RoomDb.MarketDataEntity;
 import com.example.crypto_app.RoomDb.RoomDao;

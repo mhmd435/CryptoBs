@@ -15,21 +15,23 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.crypto_app.HomeFragment.Adapters.GainLoseRvAdapter;
-import com.example.crypto_app.Model.CryptoMarketModel.CryptoMarketDataModel;
+import com.example.crypto_app.model.CryptoMarketModel.CryptoMarketDataModel;
 import com.example.crypto_app.RoomDb.MarketDataEntity;
 import com.example.crypto_app.RoomDb.MarketListEntity;
-import com.example.crypto_app.ViewModel.AppViewModel;
-import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
-import com.example.crypto_app.Model.CryptoListModel.DataItem;
+import com.example.crypto_app.viewmodel.AppViewModel;
+import com.example.crypto_app.model.cryptolistmodel.AllMarketModel;
+import com.example.crypto_app.model.cryptolistmodel.DataItem;
 import com.example.crypto_app.MainActivity;
 import com.example.crypto_app.R;
 import com.example.crypto_app.databinding.FragmentMarketBinding;
@@ -38,6 +40,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -53,7 +56,8 @@ public class MarketFragment extends Fragment {
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    GainLoseRvAdapter marketRvAdapter;
+    marketRV_Adapter marketRvAdapter;
+    List<DataItem> dataItemList;
 
 
     CompositeDisposable compositeDisposable;
@@ -94,6 +98,8 @@ public class MarketFragment extends Fragment {
 
         fragmentMarketBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_market,container,false);
         compositeDisposable = new CompositeDisposable();
+
+        setupSearchBox();
         setupViewModel();
         setupSwipRefresh();
         getMarketListDataFromDb();
@@ -102,6 +108,64 @@ public class MarketFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return fragmentMarketBinding.getRoot();
+    }
+
+    private void setupSearchBox() {
+        fragmentMarketBinding.searchEdittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+    }
+
+    private void filter(String name){
+        ArrayList<DataItem> newList = new ArrayList<>();
+        for (DataItem item : dataItemList){
+            if (item.getSymbol().toLowerCase().contains(name) || item.getName().toLowerCase().contains(name.toLowerCase())){
+                newList.add(item);
+            }
+        }
+
+        marketRvAdapter.updateData(newList);
+        marketRvAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            void checkEmpty(){
+                if (marketRvAdapter.getItemCount() == 0){
+                    fragmentMarketBinding.itemnotFoundTxt.setVisibility(View.VISIBLE);
+                }else {
+                    fragmentMarketBinding.itemnotFoundTxt.setVisibility(View.GONE);
+                }
+            }
+        });
+
     }
 
     private void getCryptoMarketDataFromDb() {
@@ -114,16 +178,54 @@ public class MarketFragment extends Fragment {
                         CryptoMarketDataModel cryptoMarketDataModel = roomMarketEntity.getCryptoMarketDataModel();
 
                         //set BTC.D on UI
-                        fragmentMarketBinding.CryptoBTCD.setText(String.format("%.2f",cryptoMarketDataModel.getData().getBtcDominance()) + "%");
+                        fragmentMarketBinding.CryptoBTCD.setText(cryptoMarketDataModel.getBTC_Dominance());
+                        String[] str3 = cryptoMarketDataModel.getBTCD_change().split("%");
+                        if (Float.parseFloat(str3[0]) > 0){
+                            fragmentMarketBinding.BTCDIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_up_24);
+                            fragmentMarketBinding.BTCChange.setTextColor(Color.GREEN);
+                        }else if (Float.parseFloat(str3[0]) < 0){
+                            fragmentMarketBinding.BTCDIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_down_24);
+                            fragmentMarketBinding.BTCChange.setTextColor(Color.RED);
+                        }else {
+                            fragmentMarketBinding.BTCDIcon.setBackgroundResource(R.drawable.ic_baseline_horizontal_rule_24);
+                            fragmentMarketBinding.BTCChange.setTextColor(Color.WHITE);
+                        }
+                        fragmentMarketBinding.BTCChange.setText(cryptoMarketDataModel.getBTCD_change());
+
+
                         //set market cap  on UI
-                        double totalmarketCap = cryptoMarketDataModel.getData().getQuote().getUSD().getTotalMarketCap();
-                        double firstDigit = Double.parseDouble(Double.toString(totalmarketCap).substring(0, 4));
-                        fragmentMarketBinding.CryptoMarketCap.setText(firstDigit + "T");
-                        //----------------------------
+                        fragmentMarketBinding.CryptoMarketCap.setText(cryptoMarketDataModel.getMarketCap());
+                        // get marketcap without %
+                        String[] str = cryptoMarketDataModel.getMarketCap_change().split("%");
+                        Log.e("TAG", "accept: " + str[0]);
+                        if (Float.parseFloat(str[0]) > 0){
+                            fragmentMarketBinding.marketcapIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_up_24);
+                            fragmentMarketBinding.MarketCapChange.setTextColor(Color.GREEN);
+                        }else if (Float.parseFloat(str[0]) < 0){
+                            fragmentMarketBinding.marketcapIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_down_24);
+                            fragmentMarketBinding.MarketCapChange.setTextColor(Color.RED);
+                        }else {
+                            fragmentMarketBinding.marketcapIcon.setBackgroundResource(R.drawable.ic_baseline_horizontal_rule_24);
+                            fragmentMarketBinding.MarketCapChange.setTextColor(Color.WHITE);
+                        }
+                        fragmentMarketBinding.MarketCapChange.setText(cryptoMarketDataModel.getMarketCap_change());
+
+
                         //set market Vol on UI
-                        String vol = Double.toString(cryptoMarketDataModel.getData().getQuote().getUSD().getTotalVolume24h()).charAt(0)
-                        + Double.toString(cryptoMarketDataModel.getData().getQuote().getUSD().getTotalVolume24h()).substring(2);
-                        fragmentMarketBinding.CryptoVolume.setText(vol.substring(0,2) + "." + vol.charAt(2) + "B");
+                        fragmentMarketBinding.CryptoVolume.setText(cryptoMarketDataModel.getVol_24h());
+                        //get VolumeChange without %
+                        String[] str2 = cryptoMarketDataModel.getVol_change().split("%");
+                        if (Float.parseFloat(str2[0]) > 0){
+                            fragmentMarketBinding.VolumeIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_up_24);
+                            fragmentMarketBinding.VolumeChange.setTextColor(Color.GREEN);
+                        }else if (Float.parseFloat(str2[0]) < 0){
+                            fragmentMarketBinding.VolumeIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_down_24);
+                            fragmentMarketBinding.VolumeChange.setTextColor(Color.RED);
+                        }else {
+                            fragmentMarketBinding.VolumeIcon.setBackgroundResource(R.drawable.ic_baseline_horizontal_rule_24);
+                            fragmentMarketBinding.VolumeChange.setTextColor(Color.WHITE);
+                        }
+                        fragmentMarketBinding.VolumeChange.setText(cryptoMarketDataModel.getVol_change());
 
 
 
@@ -156,13 +258,13 @@ public class MarketFragment extends Fragment {
                     @Override
                     public void accept(MarketListEntity roomMarketEntity) throws Throwable {
                         AllMarketModel allMarketModel = roomMarketEntity.getAllMarketModel();
-
+                        dataItemList = allMarketModel.getRootData().getCryptoCurrencyList();
 
                         if (fragmentMarketBinding.marketRv.getAdapter() != null) {
-                            marketRvAdapter = (GainLoseRvAdapter) fragmentMarketBinding.marketRv.getAdapter();
-                            marketRvAdapter.updateData((ArrayList<DataItem>) allMarketModel.getData());
+                            marketRvAdapter = (marketRV_Adapter) fragmentMarketBinding.marketRv.getAdapter();
+                            marketRvAdapter.updateData((ArrayList<DataItem>) allMarketModel.getRootData().getCryptoCurrencyList());
                         } else {
-                            marketRvAdapter = new GainLoseRvAdapter((ArrayList<DataItem>) allMarketModel.getData());
+                            marketRvAdapter = new marketRV_Adapter((ArrayList<DataItem>) allMarketModel.getRootData().getCryptoCurrencyList());
                             fragmentMarketBinding.marketRv.setAdapter(marketRvAdapter);
                         }
 

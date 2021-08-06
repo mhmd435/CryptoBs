@@ -30,13 +30,13 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.crypto_app.ViewModel.AppViewModel;
+import com.example.crypto_app.viewmodel.AppViewModel;
 import com.example.crypto_app.HomeFragment.Adapters.TopCoinRvAdapter;
 import com.example.crypto_app.HomeFragment.Adapters.TopGainLosersAdapter;
 import com.example.crypto_app.HomeFragment.Adapters.sliderImageAdapter;
-import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
-import com.example.crypto_app.Model.CryptoListModel.DataItem;
-import com.example.crypto_app.Model.SliderImageModel;
+import com.example.crypto_app.model.cryptolistmodel.AllMarketModel;
+import com.example.crypto_app.model.cryptolistmodel.DataItem;
+import com.example.crypto_app.model.SliderImageModel;
 import com.example.crypto_app.MainActivity;
 import com.example.crypto_app.R;
 import com.example.crypto_app.databinding.FragmentHomeBinding;
@@ -187,17 +187,15 @@ public class HomeFragment extends Fragment {
                     AllMarketModel allMarketModel = roomMarketEntity.getAllMarketModel();
 
                     ArrayList<DataItem> top10 = new ArrayList<>();
-                    for (int i = 0;i < allMarketModel.getData().size();i++){
+                    for (int i = 0;i < allMarketModel.getRootData().getCryptoCurrencyList().size();i++){
                         for (int j = 0;j < top_wants.size();j++){
                             String coin_name = top_wants.get(j);
-                            if (allMarketModel.getData().get(i).getSymbol().equals(coin_name)){
-                                DataItem dataItem = allMarketModel.getData().get(i);
+                            if (allMarketModel.getRootData().getCryptoCurrencyList().get(i).getSymbol().equals(coin_name)){
+                                DataItem dataItem = allMarketModel.getRootData().getCryptoCurrencyList().get(i);
                                 top10.add(dataItem);
                             }
                         }
                     }
-                    Log.e("TAG", "getAllMarketDataFromDb: " + allMarketModel.getData().size() );
-
 
 
                     if (fragmentHomeBinding.TopCoinRv.getAdapter() != null){

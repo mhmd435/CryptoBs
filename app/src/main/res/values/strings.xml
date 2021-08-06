@@ -4,4 +4,21 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open_drawer">open</string>
     <string name="close_drawer">close</string>
+    <string name="item_not_found">Item not found</string>
+    <string name="search">Search...</string>
+    <string name="btc_dominance">BTC Dominance</string>
+    <string name="_24h_volume">24h Volume</string>
+    <string name="market_cap">Market Cap</string>
+    <string name="Daily">D</string>
+    <string name="weekly">W</string>
+    <string name="monthly">M</string>
+    <string name="_1d">1D</string>
+    <string name="_1m">1M</string>
+    <string name="_1w">1W</string>
+    <string name="_4h">4h</string>
+    <string name="_1h">1h</string>
+    <string name="changeicon">ChangeIcon</string>
+    <string name="backbutton">backButton</string>
+    <string name="bookmarkbtn">BookMarkBtn</string>
+    <string name="_15m">15m</string>
 </resources>

@@ -2,7 +2,7 @@ package com.example.crypto_app.RoomDb;
 
 import androidx.room.TypeConverter;
 
-import com.example.crypto_app.Model.CryptoMarketModel.CryptoMarketDataModel;
+import com.example.crypto_app.model.CryptoMarketModel.CryptoMarketDataModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

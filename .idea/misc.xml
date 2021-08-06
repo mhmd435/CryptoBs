@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/oval_button.xml" value="0.24722222222222223" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/detailfrag_rv_items.xml" value="0.3307291666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_crypto_detail.xml" value="0.3292307692307692" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_home.xml" value="0.3338541666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/gainlose_rv_item.xml" value="0.3338541666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/marketfrag_rv_item.xml" value="0.3338541666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/topmarket_item.xml" value="0.3338541666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

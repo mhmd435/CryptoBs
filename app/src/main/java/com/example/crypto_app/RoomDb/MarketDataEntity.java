@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.crypto_app.Model.CryptoMarketModel.CryptoMarketDataModel;
+import com.example.crypto_app.model.CryptoMarketModel.CryptoMarketDataModel;
 
 @Entity(tableName = "CryptoData")
 public class MarketDataEntity {

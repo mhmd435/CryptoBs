@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.crypto_app.Model.SliderImageModel;
+import com.example.crypto_app.model.SliderImageModel;
 import com.example.crypto_app.R;
 import com.example.crypto_app.databinding.SliderImageItemBinding;
 

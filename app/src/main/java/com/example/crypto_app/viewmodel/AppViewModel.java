@@ -1,4 +1,4 @@
-package com.example.crypto_app.ViewModel;
+package com.example.crypto_app.viewmodel;
 
 import android.app.Application;
 
@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
-import com.example.crypto_app.Model.CryptoMarketModel.CryptoMarketDataModel;
-import com.example.crypto_app.Model.SliderImageModel;
+import com.example.crypto_app.model.cryptolistmodel.AllMarketModel;
+import com.example.crypto_app.model.CryptoMarketModel.CryptoMarketDataModel;
+import com.example.crypto_app.model.SliderImageModel;
 import com.example.crypto_app.HomeFragment.Repository.HomeRepository;
 import com.example.crypto_app.R;
 import com.example.crypto_app.RoomDb.MarketDataEntity;

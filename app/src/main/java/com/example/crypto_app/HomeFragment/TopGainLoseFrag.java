@@ -14,10 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.crypto_app.ViewModel.AppViewModel;
+import com.example.crypto_app.viewmodel.AppViewModel;
 import com.example.crypto_app.HomeFragment.Adapters.GainLoseRvAdapter;
-import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
-import com.example.crypto_app.Model.CryptoListModel.DataItem;
+import com.example.crypto_app.model.cryptolistmodel.AllMarketModel;
+import com.example.crypto_app.model.cryptolistmodel.DataItem;
 import com.example.crypto_app.R;
 import com.example.crypto_app.databinding.FragmentTopGainLoseBinding;
 
@@ -73,13 +73,13 @@ public class TopGainLoseFrag extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(roomMarketEntity -> {
                     AllMarketModel allMarketModel = roomMarketEntity.getAllMarketModel();
-                    data = allMarketModel.getData();
+                    data = allMarketModel.getRootData().getCryptoCurrencyList();
 
                     // sort Model list by change percent (lowest to highest)
                     Collections.sort(data, new Comparator<DataItem>() {
                         @Override
                         public int compare(DataItem o1, DataItem o2) {
-                            return Integer.valueOf((int) o1.getQuote().getUSD().getPercentChange24h()).compareTo((int) o2.getQuote().getUSD().getPercentChange24h());
+                            return Integer.valueOf((int) o1.getListQuote().get(0).getPercentChange24h()).compareTo((int) o2.getListQuote().get(0).getPercentChange24h());
                         }
                     });
 

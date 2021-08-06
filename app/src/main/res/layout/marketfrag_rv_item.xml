@@ -8,7 +8,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/GainLoseRVCon"
+        android:id="@+id/marketRV_Con"
         android:layout_width="match_parent"
         android:layout_height="70dp">
 
@@ -29,7 +29,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/GLcoinPrice"
+                    android:id="@+id/marketCoinPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
@@ -42,19 +42,19 @@
                     app:layout_constraintVertical_bias="0.32" />
 
                 <TextView
-                    android:id="@+id/GLCoinName"
+                    android:id="@+id/marketCoinName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:textColor="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/gainLoseCoinlogo"
+                    app:layout_constraintStart_toEndOf="@+id/coinlogo"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.313"
                     tools:text="TextView" />
 
                 <TextView
-                    android:id="@+id/GLcoinChange"
+                    android:id="@+id/marketCoinChange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -63,8 +63,8 @@
                     android:textAlignment="viewStart"
                     android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/GLcoinPrice"
-                    app:layout_constraintTop_toBottomOf="@+id/GLcoinPrice" />
+                    app:layout_constraintStart_toStartOf="@+id/marketCoinPrice"
+                    app:layout_constraintTop_toBottomOf="@+id/marketCoinPrice" />
 
                 <View
                     android:id="@+id/divider"
@@ -76,43 +76,55 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
-                    android:id="@+id/UpDownIcon"
+                    android:id="@+id/MarketUpDownIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/GLcoinChange"
-                    app:layout_constraintEnd_toStartOf="@+id/GLcoinChange"
-                    app:layout_constraintTop_toTopOf="@+id/GLcoinChange" />
+                    app:layout_constraintBottom_toBottomOf="@+id/marketCoinChange"
+                    app:layout_constraintEnd_toStartOf="@+id/marketCoinChange"
+                    app:layout_constraintTop_toTopOf="@+id/marketCoinChange" />
 
                 <TextView
-                    android:id="@+id/GLcoinSymbol"
+                    android:id="@+id/marketCoinSymbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:textAlignment="viewStart"
                     android:textColor="#C3595959"
                     android:textSize="13sp"
-                    app:layout_constraintStart_toEndOf="@+id/gainLoseCoinlogo"
-                    app:layout_constraintTop_toBottomOf="@+id/GLCoinName"
+                    app:layout_constraintStart_toEndOf="@+id/coinlogo"
+                    app:layout_constraintTop_toBottomOf="@+id/marketCoinName"
                     tools:text="TextView" />
 
+                <TextView
+                    android:id="@+id/marketCoinNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@+id/divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/chartImage"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/gainLoseCoinlogo"
+                    app:layout_constraintStart_toEndOf="@+id/coinlogo"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <ImageView
-                    android:id="@+id/gainLoseCoinlogo"
+                    android:id="@+id/coinlogo"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="15dp"
                     app:layout_constraintBottom_toTopOf="@+id/divider"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/marketCoinNumber"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.constraintlayout.widget.ConstraintLayout>

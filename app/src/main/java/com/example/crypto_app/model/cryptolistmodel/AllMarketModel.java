@@ -1,4 +1,4 @@
-package com.example.crypto_app.Model.CryptoListModel;
+package com.example.crypto_app.model.cryptolistmodel;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName;
 public class AllMarketModel {
 
 	@SerializedName("data")
-	private List<DataItem> data;
+	private RootData data;
 
 	@SerializedName("status")
 	private ListStatus listStatus;
 
-	public List<DataItem> getData(){
+	public RootData getRootData(){
 		return data;
 	}
 
@@ -72,6 +72,24 @@ public class AllMarketModel {
 
 		public Object getNotice(){
 			return notice;
+		}
+	}
+
+
+	public static class RootData{
+
+		@SerializedName("cryptoCurrencyList")
+		private List<DataItem> cryptoCurrencyList;
+
+		@SerializedName("totalCount")
+		private int totalCount;
+
+		public List<DataItem> getCryptoCurrencyList() {
+			return cryptoCurrencyList;
+		}
+
+		public int getTotalCount() {
+			return totalCount;
 		}
 	}
 }

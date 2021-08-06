@@ -24,18 +24,26 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.crypto_app.Model.CryptoListModel.AllMarketModel;
-import com.example.crypto_app.Model.CryptoMarketModel.CryptoMarketDataModel;
-import com.example.crypto_app.ViewModel.AppViewModel;
+import com.example.crypto_app.model.cryptolistmodel.AllMarketModel;
+import com.example.crypto_app.model.CryptoMarketModel.CryptoMarketDataModel;
+import com.example.crypto_app.viewmodel.AppViewModel;
 import com.example.crypto_app.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -101,39 +109,83 @@ public class MainActivity extends AppCompatActivity {
 
     //api call with RxJava (Crypto Data api)
     private void CallCryptoMarketApiRequest() {
-        try {
-            /* disposable for avoid memory leak */
-            appViewModel.CryptoMarketFutureCall().get()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new io.reactivex.rxjava3.core.Observer<CryptoMarketDataModel>() {
-                        @Override
-                        public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable disposable) {
-                            Log.e("TAG", "onSubscribe" + "AllMarket");
-                            compositeDisposable.add(disposable);
+
+        Completable.fromRunnable(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Document pageSrc = Jsoup.connect("https://coinmarketcap.com/").get();
+
+                    // Scraping Market Data like (marketCap,Dominance,...)
+                    Elements ScrapeMarketData= pageSrc.getElementsByClass("cmc-link");
+                    //for spliting BTC and ETH dominance in txt
+                    String[] dominance_txt = ScrapeMarketData.get(4).text().split(" ");
+
+                    // Scraping Market number of changes like (MarketcapChange,volumeChange,...)
+                    Elements ScrapeMarketChange = pageSrc.getElementsByClass("sc-27sy12-0 gLZJFn");
+                    String[] changePercent = ScrapeMarketChange.text().split(" ");
+
+                    // Scraping All span Tag
+                    Elements ScrapeChangeIcon = pageSrc.getElementsByTag("span");
+
+                    // get all span Tag wth Icon (class= caretUp and caretDown)
+                    ArrayList<String> IconList = new ArrayList();
+                    for (Element i : ScrapeChangeIcon){
+                        if (i.hasClass("icon-Caret-down") || i.hasClass("icon-Caret-up")){
+                            IconList.add(i.attr("class"));
                         }
+                    }
 
-                        @Override
-                        public void onNext(@io.reactivex.rxjava3.annotations.NonNull CryptoMarketDataModel cryptoMarketDataModel) {
-                            appViewModel.insertCryptoDataMarket(cryptoMarketDataModel);
-
+                    // matching - or + element of PercentChanges
+                    ArrayList<String> finalchangePercent = new ArrayList<>();
+                    for (int i = 0;i < 3;i++){
+                        if (IconList.get(i).equals("icon-Caret-up")){
+                            finalchangePercent.add(changePercent[i]);
+                        }else{
+                            finalchangePercent.add("-" + changePercent[i]);
                         }
+                    }
 
-                        @Override
-                        public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                            Log.e("TAG", "onError: AllMarket" + e.getMessage());
-                            Snackbar.make(activityMainBinding.mainCon,"an Error apears...",1500).show();
-                        }
+                    // initialize all data
+                    String Cryptos = ScrapeMarketData.get(0).text();
+                    String Exchanges = ScrapeMarketData.get(1).text();
+                    String MarketCap = ScrapeMarketData.get(2).text();
+                    String Vol_24h = ScrapeMarketData.get(3).text();
 
-                        @Override
-                        public void onComplete() {
+                    String BTC_Dominance = dominance_txt[1];
+                    String ETH_Dominance = dominance_txt[3];
 
-                        }
-                    });
+                    String MarketCap_change = finalchangePercent.get(0);
+                    String vol_change = finalchangePercent.get(1);
+                    String BTCD_change = finalchangePercent.get(2);
 
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+                    CryptoMarketDataModel cryptoMarketDataModel = new CryptoMarketDataModel(Cryptos,Exchanges,MarketCap,Vol_24h,BTC_Dominance,ETH_Dominance,MarketCap_change,vol_change,BTCD_change);
+                    // insert model class to RoomDatabase
+                    appViewModel.insertCryptoDataMarket(cryptoMarketDataModel);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+                        Log.e("on", "onSubscribe: ok");
+                        compositeDisposable.add(d);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e("on", "onComplete: ok");
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                        Log.e("on", "onError: " + e.getMessage());
+                    }
+                });
     }
 
     //api Call with RxJava (list of Coins api)
@@ -153,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onNext(@io.reactivex.rxjava3.annotations.NonNull AllMarketModel allMarketModel) {
 
-                            Log.e("TAG", "onNext: " + allMarketModel.getData().size());
+                            Log.e("TAG", "onNext: " + allMarketModel.getRootData().getCryptoCurrencyList().size());
                             appViewModel.insertAllMarket(allMarketModel);
                         }
 
