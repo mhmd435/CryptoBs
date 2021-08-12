@@ -32,7 +32,7 @@ public class DataItem implements Parcelable {
 	private double circulatingSupply;
 
 	@SerializedName("totalSupply")
-	private double totalSupply;
+	private Number totalSupply;
 
 	@SerializedName("max_supply")
 	private double maxSupply;
@@ -124,7 +124,7 @@ public class DataItem implements Parcelable {
 		return circulatingSupply;
 	}
 
-	public double getTotalSupply() {
+	public Number getTotalSupply() {
 		return totalSupply;
 	}
 
@@ -182,7 +182,7 @@ public class DataItem implements Parcelable {
 		dest.writeInt(cmcRank);
 		dest.writeInt(numMarketPairs);
 		dest.writeDouble(circulatingSupply);
-		dest.writeDouble(totalSupply);
+		dest.writeInt((Integer) totalSupply);
 		dest.writeDouble(maxSupply);
 		dest.writeDouble(ath);
 		dest.writeDouble(atl);

@@ -21,4 +21,7 @@
     <string name="backbutton">backButton</string>
     <string name="bookmarkbtn">BookMarkBtn</string>
     <string name="_15m">15m</string>
+    <string name="fullscreen">fullscreen</string>
+    <string name="coinlogo">coinlogo</string>
+    <string name="there_is_no_item">there is no Item</string>
 </resources>

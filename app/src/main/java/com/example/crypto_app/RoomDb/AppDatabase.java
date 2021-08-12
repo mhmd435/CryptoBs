@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 @TypeConverters({AllMarketModelConverter.class,CryptoDataModelConverter.class})
-@Database(entities = {MarketListEntity.class,MarketDataEntity.class},version = 5)
+@Database(entities = {MarketListEntity.class,MarketDataEntity.class},version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String Db_Name = "AppDb";

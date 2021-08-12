@@ -8,7 +8,7 @@ public class ListUSD {
 	private double price;
 
 	@SerializedName("volume24h")
-	private double volume24h;
+	private Number volume24h;
 
 	@SerializedName("volume7d")
 	private double volume7d;
@@ -17,7 +17,7 @@ public class ListUSD {
 	private double volume30d;
 
 	@SerializedName("marketCap")
-	private double marketCap;
+	private Number marketCap;
 
 	@SerializedName("percentChange1h")
 	private double percentChange1h;
@@ -53,7 +53,7 @@ public class ListUSD {
 		return price;
 	}
 
-	public double getVolume24h() {
+	public Number getVolume24h() {
 		return volume24h;
 	}
 
@@ -65,7 +65,7 @@ public class ListUSD {
 		return volume30d;
 	}
 
-	public double getMarketCap() {
+	public Number getMarketCap() {
 		return marketCap;
 	}
 

@@ -19,7 +19,7 @@
             android:elevation="10dp"
             app:menu="@menu/toolbar_menu"
             app:title="CoinEx"
-            app:titleTextColor="#FFB700" />
+            app:titleTextColor="#FFFFFF" />
 
     </com.google.android.material.appbar.AppBarLayout>
 </layout>

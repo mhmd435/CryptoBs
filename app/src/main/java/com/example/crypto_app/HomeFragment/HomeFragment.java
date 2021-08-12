@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment {
             public void onDestinationChanged(@NonNull @NotNull NavController controller, @NonNull @NotNull NavDestination destination, @Nullable @org.jetbrains.annotations.Nullable Bundle arguments) {
                 if (destination.getId() == R.id.homeFragment){
                     toolbar.setNavigationIcon(R.drawable.ic_baseline_sort_35);
-                    toolbar.setTitle("CoinEx");
+                    toolbar.setTitle("CryptoBs");
                 }
             }
         });

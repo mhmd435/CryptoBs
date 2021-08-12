@@ -40,10 +40,13 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -190,40 +193,34 @@ public class MainActivity extends AppCompatActivity {
 
     //api Call with RxJava (list of Coins api)
     private void CallListApiRequest() {
-        try {
-            /* disposable for avoid memory leak */
-            appViewModel.MarketFutureCall().get()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new io.reactivex.rxjava3.core.Observer<AllMarketModel>() {
-                        @Override
-                        public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable disposable) {
-                            Log.e("TAG", "onSubscribe");
-                            compositeDisposable.add(disposable);
-                        }
 
-                        @Override
-                        public void onNext(@io.reactivex.rxjava3.annotations.NonNull AllMarketModel allMarketModel) {
+        Observable.interval(20, TimeUnit.SECONDS)
+                .flatMap(n -> appViewModel.MarketFutureCall().get().subscribeOn(Schedulers.io()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AllMarketModel>() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+                        Log.e("TAG", "onSubscribe");
+                        compositeDisposable.add(d);
+                    }
 
-                            Log.e("TAG", "onNext: " + allMarketModel.getRootData().getCryptoCurrencyList().size());
-                            appViewModel.insertAllMarket(allMarketModel);
-                        }
+                    @Override
+                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull AllMarketModel allMarketModel) {
+                        Log.e("TAG", "onNext: " + allMarketModel.getRootData().getCryptoCurrencyList().size());
+                        appViewModel.insertAllMarket(allMarketModel);
+                    }
 
-                        @Override
-                        public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                            Log.e("TAG", "onError: " + e.getMessage());
-                            Snackbar.make(activityMainBinding.mainCon,"an Error apears...",1500).show();
-                        }
+                    @Override
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                        Log.e("TAG", "onError: " + e.getMessage());
+                        Snackbar.make(activityMainBinding.mainCon,"an Error apears...",1500).show();
+                    }
 
-                        @Override
-                        public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-                        }
-                    });
-
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+                    }
+                });
     }
 
     //setup ViewModels
@@ -249,27 +246,27 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(activityMainBinding.bottomNavigation,navController);
 
         //use NavOptions for set Animation for transition between fragments
-        activityMainBinding.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-
-                NavOptions.Builder optionsBuilder = new NavOptions.Builder();
-
-                switch (item.getItemId()) {
-                    case R.id.homeFragment:
-                    case R.id.marketFragment:
-                    case R.id.watchlistFragment:
-                        optionsBuilder
-                                .setEnterAnim(R.anim.fade_in)
-                                .setExitAnim(R.anim.slide_out_right)
-                                .setPopEnterAnim(R.anim.fade_in)
-                                .setPopExitAnim(R.anim.slide_out_left);
-                         break;
-                }
-                navController.navigate(item.getItemId(), null, optionsBuilder.build());
-                return true;
-            }
-        });
+//        activityMainBinding.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+//
+//                NavOptions.Builder optionsBuilder = new NavOptions.Builder();
+//
+//                switch (item.getItemId()) {
+//                    case R.id.homeFragment:
+//                    case R.id.marketFragment:
+//                    case R.id.watchlistFragment:
+//                        optionsBuilder
+//                                .setEnterAnim(R.anim.fade_in)
+//                                .setExitAnim(R.anim.slide_out_right)
+//                                .setPopEnterAnim(R.anim.fade_in)
+//                                .setPopExitAnim(R.anim.slide_out_left);
+//                         break;
+//                }
+//                navController.navigate(item.getItemId(), null, optionsBuilder.build());
+//                return true;
+//            }
+//        });
 
         //for do nothing in reSelect Items when Integrat with Nav Component
         activityMainBinding.bottomNavigation.setOnNavigationItemReselectedListener(item -> { });

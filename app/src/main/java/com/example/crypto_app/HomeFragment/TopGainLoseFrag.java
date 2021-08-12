@@ -42,6 +42,7 @@ public class TopGainLoseFrag extends Fragment {
     List<DataItem> data;
     CompositeDisposable compositeDisposable;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

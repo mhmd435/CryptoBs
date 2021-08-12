@@ -26,11 +26,24 @@
     </fragment>
     <fragment
         android:id="@+id/watchlistFragment"
-        android:name="com.example.crypto_app.WatchlistFragment"
+        android:name="com.example.crypto_app.watchlistfragment.WatchlistFragment"
         android:label="fragment_watchlist"
-        tools:layout="@layout/fragment_watchlist" />
+        tools:layout="@layout/fragment_watchlist" >
+        <action
+            android:id="@+id/action_watchlistFragment_to_cryptoDetailFragment"
+            app:destination="@id/cryptoDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cryptoDetailFragment"
         android:name="com.example.crypto_app.CryptoDetailFragment.CryptoDetailFrag"
-        android:label="CryptoDetailFragment" />
+        android:label="CryptoDetailFragment" >
+        <action
+            android:id="@+id/action_cryptoDetailFragment_to_landScapChartFrag"
+            app:destination="@id/landScapChartFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/landScapChartFrag"
+        android:name="com.example.crypto_app.landScapChartFrag"
+        android:label="fragment_land_scap_chart"
+        tools:layout="@layout/fragment_land_scap_chart" />
 </navigation>

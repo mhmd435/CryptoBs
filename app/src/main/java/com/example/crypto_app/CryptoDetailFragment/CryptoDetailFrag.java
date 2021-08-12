@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -46,16 +49,16 @@ public class CryptoDetailFrag extends Fragment {
         fragmentCryptoDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_crypto_detail, container, false);
 
         // create factory for pass another Args to ViewModel
-        ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
-            @NonNull
-            @Override
-            public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-                return (T) new CryptoDetailViewModel(getActivity().getApplication(),fragmentCryptoDetailBinding);
-            }
-        };
+//        ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
+//            @NonNull
+//            @Override
+//            public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+//                return (T) new CryptoDetailViewModel(getActivity().getApplication(),fragmentCryptoDetailBinding);
+//            }
+//        };
 
         // ViewModel Setup
-        viewmodel = new ViewModelProvider(requireActivity(),factory).get(CryptoDetailViewModel.class);
+        viewmodel = new ViewModelProvider(requireActivity()).get(CryptoDetailViewModel.class);
         fragmentCryptoDetailBinding.setViewmodel(viewmodel);
 
         // get Data from Bundle and set to databinding
@@ -69,6 +72,7 @@ public class CryptoDetailFrag extends Fragment {
         setupAllText(dataItem);
         setupchart(dataItem);
         setupRecyclerView(dataItem);
+        setupfullScreenTxt(dataItem);
 
         // Inflate the layout for this fragment
         return fragmentCryptoDetailBinding.getRoot();
@@ -87,6 +91,7 @@ public class CryptoDetailFrag extends Fragment {
         detailRvAdapter = new DetailRvAdapter(detailkeysArray,detailValuessArray);
         fragmentCryptoDetailBinding.derailRV.setAdapter(detailRvAdapter);
 
+
     }
 
     //set diffrent decimals for diffrent price
@@ -103,13 +108,21 @@ public class CryptoDetailFrag extends Fragment {
     private void fillValuesArray(DataItem dataItem) {
         detailValuessArray = new ArrayList<>();
 
+        // fix numbers
         String high24 = SetDecimals(dataItem.getHigh24h());
         String low24 = SetDecimals(dataItem.getLow24h());
         String ath = SetDecimals(dataItem.getAth());
         String atl = SetDecimals(dataItem.getAtl());
+        // remove float section and get a int
+        String marketCap = dataItem.getListQuote().get(0).getMarketCap().toString().split("\\.")[0];
+        String volume24 = dataItem.getListQuote().get(0).getVolume24h().toString().split("\\.")[0];
+        String totalsupply = dataItem.getTotalSupply().toString().split("\\.")[0];
 
+
+        Log.e("TAG", "MarketCap detail: " + dataItem.getListQuote().get(0).getMarketCap());
         detailValuessArray.add(dataItem.getName());
-        detailValuessArray.add(String.valueOf(dataItem.getListQuote().get(0).getMarketCap()));
+        detailValuessArray.add("$" + marketCap);
+        detailValuessArray.add("$" + volume24);
         detailValuessArray.add(String.format("%.2f", dataItem.getListQuote().get(0).getDominance()) + "%");
         detailValuessArray.add(String.format("%.2f", dataItem.getListQuote().get(0).getPercentChange7d()));
         detailValuessArray.add(String.format("%.2f", dataItem.getListQuote().get(0).getPercentChange30d()));
@@ -117,13 +130,14 @@ public class CryptoDetailFrag extends Fragment {
         detailValuessArray.add(low24);
         detailValuessArray.add(ath);
         detailValuessArray.add(atl);
-        detailValuessArray.add(String.valueOf(dataItem.getTotalSupply()));
+        detailValuessArray.add(totalsupply);
     }
 
     private void fillkeysArray() {
         detailkeysArray = new ArrayList<>();
         detailkeysArray.add("Name");
         detailkeysArray.add("Market Cap");
+        detailkeysArray.add("Volume 24h");
         detailkeysArray.add("Dominance");
         detailkeysArray.add("PercentChange 7d");
         detailkeysArray.add("PercentChange 30d");
@@ -150,6 +164,7 @@ public class CryptoDetailFrag extends Fragment {
         SetDecimalsForPrice(dataItem);
         SetColorText(dataItem);
 
+        //Chech price for set price change and price change Icon (red or green)
         if (dataItem.getListQuote().get(0).getPercentChange24h() > 0) {
             fragmentCryptoDetailBinding.detailPriceChangeIcon.setBackgroundResource(R.drawable.ic_baseline_arrow_drop_up_24);
             fragmentCryptoDetailBinding.detailCoinChange.setText(String.format("%.2f", dataItem.getListQuote().get(0).getPercentChange24h()) + "%");
@@ -196,6 +211,7 @@ public class CryptoDetailFrag extends Fragment {
     public void onWatchListClick(DataItem dataItem) {
 
         ReadDataStore();
+
         // show diffrent Icons when get data from shared Prefrence
         if (bookmarksArray.contains(dataItem.getSymbol())) {
             watchlistIsChecked = true;
@@ -235,8 +251,7 @@ public class CryptoDetailFrag extends Fragment {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         Gson gson = new Gson();
         String json = sharedPrefs.getString("bookmarks", String.valueOf(new ArrayList<String>()));
-        Type type = new TypeToken<ArrayList<String>>() {
-        }.getType();
+        Type type = new TypeToken<ArrayList<String>>(){}.getType();
         bookmarksArray = gson.fromJson(json, type);
         Log.e("TAG", "ReadDataStore: " + bookmarksArray);
     }
@@ -251,5 +266,22 @@ public class CryptoDetailFrag extends Fragment {
 
         editor.putString("bookmarks", json);
         editor.apply();
+    }
+
+    private void setupfullScreenTxt(DataItem dataItem) {
+        String udata="fullscreen";
+        SpannableString content = new SpannableString(udata);
+        content.setSpan(new UnderlineSpan(), 0, udata.length(), 0);
+        fragmentCryptoDetailBinding.fullscreenTxt.setText(content);
+
+        fragmentCryptoDetailBinding.fullscreenTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("model", dataItem);
+
+                Navigation.findNavController(v).navigate(R.id.action_cryptoDetailFragment_to_landScapChartFrag,bundle);
+            }
+        });
     }
 }

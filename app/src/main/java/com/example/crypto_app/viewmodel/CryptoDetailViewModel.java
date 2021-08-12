@@ -3,6 +3,7 @@ package com.example.crypto_app.viewmodel;
 import android.app.Application;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -13,17 +14,15 @@ import com.example.crypto_app.databinding.FragmentCryptoDetailBinding;
 import org.jetbrains.annotations.NotNull;
 
 public class CryptoDetailViewModel extends AndroidViewModel {
-    private FragmentCryptoDetailBinding fragmentCryptoDetailBinding;
 
 
-    public CryptoDetailViewModel(@NonNull @NotNull Application application, FragmentCryptoDetailBinding fragmentCryptoDetailBinding) {
+    public CryptoDetailViewModel(@NonNull @NotNull Application application) {
         super(application);
-        this.fragmentCryptoDetailBinding = fragmentCryptoDetailBinding;
     }
 
     // update chart with that Interval
-    public void OnIntervalBtnClickByNumber(View view, int interval, WebView webView,String Symbol){
-        disableAllBtn();
+    public void OnIntervalBtnClickByNumber(View view, int interval, WebView webView, String Symbol, Button btn,Button btn2,Button btn3,Button btn4,Button btn5){
+        disableAllBtn(btn,btn2,btn3,btn4,btn5);
 
         // Active Button's Layout (Bottom Border)
         view.setBackgroundResource(R.drawable.borderbutton_active);
@@ -33,8 +32,8 @@ public class CryptoDetailViewModel extends AndroidViewModel {
     }
 
     // update chart with that Interval
-    public void OnIntervalBtnClickByChar(View view, String interval, WebView webView,String Symbol){
-        disableAllBtn();
+    public void OnIntervalBtnClickByChar(View view, String interval, WebView webView,String Symbol, Button btn,Button btn2,Button btn3,Button btn4,Button btn5){
+        disableAllBtn(btn,btn2,btn3,btn4,btn5);
 
         // Active Button's Layout (Bottom Border)
         view.setBackgroundResource(R.drawable.borderbutton_active);
@@ -44,12 +43,12 @@ public class CryptoDetailViewModel extends AndroidViewModel {
     }
 
     // inActive Button's Layout (No Border)
-    private void disableAllBtn(){
-        fragmentCryptoDetailBinding.appCompatButton.setBackgroundResource(R.drawable.borderbutton_notactive);
-        fragmentCryptoDetailBinding.appCompatButton2.setBackgroundResource(R.drawable.borderbutton_notactive);
-        fragmentCryptoDetailBinding.appCompatButton3.setBackgroundResource(R.drawable.borderbutton_notactive);
-        fragmentCryptoDetailBinding.appCompatButton4.setBackgroundResource(R.drawable.borderbutton_notactive);
-        fragmentCryptoDetailBinding.appCompatButton5.setBackgroundResource(R.drawable.borderbutton_notactive);
-        fragmentCryptoDetailBinding.appCompatButton6.setBackgroundResource(R.drawable.borderbutton_notactive);
+    private void disableAllBtn(Button btn, Button btn2, Button btn3, Button btn4, Button btn5){
+        btn.setBackgroundResource(R.drawable.borderbutton_notactive);
+        btn2.setBackgroundResource(R.drawable.borderbutton_notactive);
+        btn3.setBackgroundResource(R.drawable.borderbutton_notactive);
+        btn4.setBackgroundResource(R.drawable.borderbutton_notactive);
+        btn5.setBackgroundResource(R.drawable.borderbutton_notactive);
+
     }
 }
