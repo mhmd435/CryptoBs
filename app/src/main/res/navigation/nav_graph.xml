@@ -7,43 +7,60 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.crypto_app.HomeFragment.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:name="com.besenior.cryptobs.HomeFragment.HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_cryptoDetailFragment"
             app:destination="@id/cryptoDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/marketFragment"
-        android:name="com.example.crypto_app.MarketFragment.MarketFragment"
-        android:label="fragment_market"
-        tools:layout="@layout/fragment_market" >
+        android:name="com.besenior.cryptobs.MarketFragment.MarketFragment"
+        tools:layout="@layout/fragment_market">
         <action
             android:id="@+id/action_marketFragment_to_cryptoDetailFragment"
-            app:destination="@id/cryptoDetailFragment">
-        </action>
+            app:destination="@id/cryptoDetailFragment"></action>
     </fragment>
     <fragment
         android:id="@+id/watchlistFragment"
-        android:name="com.example.crypto_app.watchlistfragment.WatchlistFragment"
-        android:label="fragment_watchlist"
-        tools:layout="@layout/fragment_watchlist" >
+        android:name="com.besenior.cryptobs.watchlistfragment.WatchlistFragment"
+        tools:layout="@layout/fragment_watchlist">
         <action
             android:id="@+id/action_watchlistFragment_to_cryptoDetailFragment"
             app:destination="@id/cryptoDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/cryptoDetailFragment"
-        android:name="com.example.crypto_app.CryptoDetailFragment.CryptoDetailFrag"
-        android:label="CryptoDetailFragment" >
+        android:name="com.besenior.cryptobs.CryptoDetailFragment.CryptoDetailFrag">
         <action
             android:id="@+id/action_cryptoDetailFragment_to_landScapChartFrag"
             app:destination="@id/landScapChartFrag" />
     </fragment>
     <fragment
         android:id="@+id/landScapChartFrag"
-        android:name="com.example.crypto_app.landScapChartFrag"
+        android:name="com.besenior.cryptobs.CryptoDetailFragment.landScapChartFrag"
         android:label="fragment_land_scap_chart"
-        tools:layout="@layout/fragment_land_scap_chart" />
+        tools:layout="@layout/fragment_land_scap_chart" >
+        <action
+            android:id="@+id/action_landScapChartFrag_to_cryptoDetailFragment"
+            app:destination="@id/cryptoDetailFragment"
+            app:popUpTo="@id/cryptoDetailFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutUs_fragment"
+        android:name="com.besenior.cryptobs.otherFragments.AboutUs_fragment"
+        android:label="AboutUs_fragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.besenior.cryptobs.otherFragments.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.besenior.cryptobs.otherFragments.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/privacypolicyFragment"
+        android:name="com.besenior.cryptobs.otherFragments.PrivacypolicyFragment"
+        android:label="fragment_privacypolicy"
+        tools:layout="@layout/fragment_privacypolicy" />
 </navigation>

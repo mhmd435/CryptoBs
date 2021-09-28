@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">crypto_app</string>
+    <string name="app_name">cryptoBs</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open_drawer">open</string>
@@ -24,4 +24,38 @@
     <string name="fullscreen">fullscreen</string>
     <string name="coinlogo">coinlogo</string>
     <string name="there_is_no_item">there is no Item</string>
+    <string name="aboutUs">besenior Academy is a collection of expert developers Aims to provide world users with easier access to information in various fields of Crypto currencies, health, weather, etc.</string>
+    <string name="aboutUs2">Information is power And we will be happy for all users in the world to have quick and easy access to resources</string>
+    <string name="instagram_id">instagram.com/besenior.academy</string>
+    <string name="contact_us">Contact us</string>
+    <string name="telgram_id">t.me/mhm555</string>
+    <string name="youtube_id">Channel: besenior</string>
+    <string name="telgram">telgram</string>
+    <string name="language">language</string>
+    <string name="darkmode">DarkMode</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="lastname">Lastname</string>
+    <string name="firstname">Firstname</string>
+    <string name="mail">mail</string>
+    <string name="save">save</string>
+    <string name="app_logo">app logo</string>
+    <string name="msg_token_fmt" />
+    <string name="connection_lost">Internet Connection lost…</string>
+    <string name="Getting_Data">Getting Data…</string>
+    <string name="exit">Exit</string>
+    <string name="about_us">about us</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="privacy_policy">privacy policy</string>
+    <string name="whatwecollect">Personal Information Provided by You. We collect firstnames,lastnames and email addresses</string>
+    <string name="whycollect">We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and your consent.</string>
+    <string name="whereshare">We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations</string>
+    <string name="privecy3">3. will your information be shared with anyone?</string>
+    <string name="privecy2">2. how do we use your information?</string>
+    <string name="privecy1">1. What information do we collect?</string>
+
+    <array name="lang">
+        <item>English</item>
+        <item>Persian</item>
+    </array>
 </resources>

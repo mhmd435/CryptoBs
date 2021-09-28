@@ -109,5 +109,6 @@
                     tools:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

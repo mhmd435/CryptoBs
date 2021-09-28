@@ -18,7 +18,9 @@
             android:id="@+id/mainCon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".MainActivity">
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            tools:context="com.besenior.cryptobs.MainActivity">
 
 
             <androidx.fragment.app.FragmentContainerView
@@ -34,15 +36,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navGraph="@navigation/nav_graph" />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
+            <me.ibrahimsn.lib.SmoothBottomBar
                 android:id="@+id/bottom_navigation"
                 style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                app:backgroundColor="#FF4812AC"
+                app:iconSize="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/bottom_navigation_menu" />
+                app:menu="@menu/bottom_navigation_menu"
+                app:textSize="14sp"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -51,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/bottom_navigation_menu"
+            app:menu="@menu/navigationview_menu"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/drawer_headerlayout"/>
     </androidx.drawerlayout.widget.DrawerLayout>

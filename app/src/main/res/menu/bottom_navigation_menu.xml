@@ -5,7 +5,7 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"/>
+        android:title="Home" />
 
     <item
     android:id="@+id/marketFragment"

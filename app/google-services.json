@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "509660010167",
+    "project_id": "cryptobs-75710",
+    "storage_bucket": "cryptobs-75710.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509660010167:android:c4861a49a4cc666c869f32",
+        "android_client_info": {
+          "package_name": "com.besenior.cryptobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509660010167-7lvv8k9d1o1pe6vqdujci8h06sik9v6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt60ws6h_zL0gtC1WFiU42cmCinn_sAsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509660010167-7lvv8k9d1o1pe6vqdujci8h06sik9v6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ProfileCon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0A0320"
+        tools:context=".otherFragments.ProfileFragment" >
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/lastname"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/radius_inputtext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="15dp"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#54D4FF"
+            android:textColorHint="#6E6E6E"
+            android:textCursorDrawable="@drawable/text_cursor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:background="@drawable/profile_tb_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/mail"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/radius_inputtext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="15dp"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#54D4FF"
+            android:textColorHint="#6E6E6E"
+            android:textCursorDrawable="@drawable/text_cursor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <include
+            android:id="@+id/include5"
+            layout="@layout/profile_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/roundedImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/profile_placeholder"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:riv_corner_radius="40dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/radius_inputtext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="15dp"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#54D4FF"
+            android:textColorHint="#6E6E6E"
+            android:textCursorDrawable="@drawable/text_cursor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/changeImg"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/firstname"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <Button
+            android:id="@+id/changeImg"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/change_photo"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/roundedImageView"
+            app:layout_constraintStart_toStartOf="@+id/roundedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/roundedImageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

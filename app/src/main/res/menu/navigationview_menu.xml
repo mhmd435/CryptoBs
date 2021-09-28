@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/menutop1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/homeFragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/marketFragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_bar_chart_24"
+            android:title="Market"/>
+
+        <item
+            android:id="@+id/watchlistFragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_bookmark_24"
+            android:title="Watchlist"/>
+
+    </group>
+
+
+
+    <group
+        android:id="@+id/menutop2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/profileFragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/profile"/>
+
+        <item
+            android:id="@+id/settingFragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/settings"/>
+
+        <item
+            android:id="@+id/aboutUs_fragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_emoji_people_24"
+            android:title="@string/about_us"/>
+
+        <item
+            android:id="@+id/privacypolicyFragment"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_privacy_tip_24"
+            android:title="@string/privacy_policy"/>
+
+        <item
+            android:id="@+id/ExitBtn"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="@string/exit"/>
+
+    </group>
+
+
+
+</menu>

@@ -3,23 +3,51 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable-v23/splashscreen.xml" value="0.346875" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.346875" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/borderbutton_notactive.xml" value="0.3351851851851852" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/collapsing_appbar_bg.xml" value="0.35" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/ic_baseline_emoji_people_24.xml" value="0.30730593607305934" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/ic_baseline_sort_35.xml" value="0.18055555555555555" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/loading.xml" value="0.28125" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/nestedscroll_bg.xml" value="0.30684931506849317" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/oval_button.xml" value="0.24722222222222223" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/profile_tb_bg.xml" value="0.35" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/radius_inputtext.xml" value="0.3446153846153846" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/rv_item_bg.xml" value="0.2972222222222222" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/searchbox_bg.xml" value="0.30684931506849317" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/splash_sc_bg.xml" value="0.346875" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/splashscreen.xml" value="0.346875" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/topmarket_bg.xml" value="0.2962962962962963" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/drawable/watched_rv_bg.xml" value="0.2962962962962963" />
-        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/activity_main.xml" value="0.3307291666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/activity_main.xml" value="0.2988679352838745" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/activity_splash_screen.xml" value="0.2988679352838745" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/appbarlayout.xml" value="0.3338541666666667" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/detailfrag_rv_items.xml" value="0.3307291666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/drawer_headerlayout.xml" value="0.2988679352838745" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/empty_appbar.xml" value="0.3307291666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_about_us_fragment.xml" value="0.2988679352838745" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_crypto_detail.xml" value="0.3292307692307692" />
-        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_home.xml" value="0.3338541666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_home.xml" value="0.2264151024877837" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_land_scap_chart.xml" value="0.2988679352838745" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_privacypolicy.xml" value="0.2972222222222222" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_profile.xml" value="0.2988679352838745" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_setting.xml" value="0.2988679352838745" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_top_gain_lose.xml" value="0.2988679352838745" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/fragment_watchlist.xml" value="0.3338541666666667" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/gainlose_rv_item.xml" value="0.3338541666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/langspinner_item.xml" value="0.3338541666666667" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/marketfrag_rv_item.xml" value="0.3338541666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/notification.xml" value="0.3338541666666667" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/profile_appbar.xml" value="0.32871794871794874" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/slider_image_item.xml" value="0.334375" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/topmarket_item.xml" value="0.3338541666666667" />
         <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/layout/watchlist_rv_item.xml" value="0.4528302049755674" />
-        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.21481481481481482" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/menu/navigationview_menu.xml" value="0.1404494382022472" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/menu/toolbar_menu.xml" value="0.334375" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.346875" />
+        <entry key="..\:/AndroidStudioProject/crypto_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.346875" />
       </map>
     </option>
   </component>

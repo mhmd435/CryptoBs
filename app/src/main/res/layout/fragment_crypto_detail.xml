@@ -6,11 +6,11 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.crypto_app.viewmodel.CryptoDetailViewModel"/>
+            type="com.besenior.cryptobs.viewmodel.CryptoDetailViewModel"/>
 
         <variable
             name="model"
-            type="com.example.crypto_app.model.cryptolistmodel.DataItem" />
+            type="com.besenior.cryptobs.model.cryptolistmodel.DataItem" />
 
     </data>
 
@@ -24,7 +24,7 @@
             android:id="@+id/cryptoDetailCon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".CryptoDetailFragment.CryptoDetailFrag">
+            tools:context="com.besenior.cryptobs.CryptoDetailFragment.CryptoDetailFrag">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -217,9 +217,7 @@
                     android:id="@+id/detaillChart"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/appCompatButton6" />
@@ -250,16 +248,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailChartCon">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/derailRV"
-                    android:layout_width="409dp"
-                    android:layout_height="498dp"
-                    android:layoutAnimation="@anim/layout_anim"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="#5B6E6AFA"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/derailRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layoutAnimation="@anim/layout_anim"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

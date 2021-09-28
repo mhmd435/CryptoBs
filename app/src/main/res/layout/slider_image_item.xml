@@ -11,11 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.agrawalsuneet.dotsloader.loaders.TashieLoader
+            android:id="@+id/viewpager_tashieLoader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tashieloader_animDelay="200"
+            app:tashieloader_animDur="700"
+            app:tashieloader_dotsColor="#9F9F9F"
+            app:tashieloader_dotsDist="5dp"
+            app:tashieloader_dotsRadius="3dp"
+            app:tashieloader_noOfDots="3" />
+
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageSlide"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

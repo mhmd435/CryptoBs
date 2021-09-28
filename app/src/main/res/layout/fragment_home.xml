@@ -35,7 +35,7 @@
                 android:id="@+id/HomeCon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".HomeFragment.HomeFragment">
+                tools:context="com.besenior.cryptobs.HomeFragment.HomeFragment">
 
 
                 <androidx.viewpager2.widget.ViewPager2
@@ -47,13 +47,12 @@
                     android:orientation="horizontal"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:visibility="visible">
+                    tools:visibility="visible"/>
 
-                </androidx.viewpager2.widget.ViewPager2>
 
                 <LinearLayout
                     android:id="@+id/sliderindicator"
@@ -163,6 +162,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tablayout" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

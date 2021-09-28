@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.crypto_app">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.besenior.cryptobs">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
 
     <application
-        android:hardwareAccelerated="true"
-        android:largeHeap="true"
+        android:name=".Hilt.HiltApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="false"
+        tools:replace="android:supportsRtl"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher_foreground"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/Theme.Crypto_app">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize">
+        android:theme="@style/appMain_theme">
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <service android:name=".FireBase.FirebaseMessageReceiver">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/cryptologo" />
+            <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+                 notification message. See README(https://goo.gl/6BKBk7) for more. -->
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_color"
+                android:resource="@color/white" />
+        </service>
     </application>
 
 </manifest>

@@ -15,10 +15,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#1D0077"
-            android:elevation="10dp"
+            android:background="#0A0320"
+            android:elevation="0dp"
             app:menu="@menu/toolbar_menu"
-            app:title="CoinEx"
+            app:title="CryptoBs"
             app:titleTextColor="#FFFFFF" />
 
     </com.google.android.material.appbar.AppBarLayout>
