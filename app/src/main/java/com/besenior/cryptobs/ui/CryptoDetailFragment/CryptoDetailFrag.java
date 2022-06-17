@@ -1,11 +1,10 @@
-package com.besenior.cryptobs.CryptoDetailFragment;
+package com.besenior.cryptobs.ui.CryptoDetailFragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.SpannableString;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -37,7 +35,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import eightbitlab.com.blurview.RenderScriptBlur;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class CryptoDetailFrag extends Fragment {

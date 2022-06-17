@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.HomeFragment;
+package com.besenior.cryptobs.ui.HomeFragment;
 
 import android.os.Bundle;
 
@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.besenior.cryptobs.HomeFragment.Adapters.GainLoseRvAdapter;
+import com.besenior.cryptobs.ui.HomeFragment.Adapters.GainLoseRvAdapter;
 import com.besenior.cryptobs.model.cryptolistmodel.AllMarketModel;
 import com.besenior.cryptobs.model.cryptolistmodel.DataItem;
 import com.besenior.cryptobs.viewmodel.AppViewModel;

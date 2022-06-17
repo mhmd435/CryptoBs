@@ -9,7 +9,7 @@ import com.besenior.cryptobs.RoomDb.Entities.MarketDataEntity;
 import com.besenior.cryptobs.model.cryptomarketdataModel.CryptoMarketDataModel;
 import com.besenior.cryptobs.model.cryptolistmodel.AllMarketModel;
 import com.besenior.cryptobs.model.SliderImageModel;
-import com.besenior.cryptobs.HomeFragment.Repository.HomeRepository;
+import com.besenior.cryptobs.ui.HomeFragment.Repository.HomeRepository;
 import com.besenior.cryptobs.RoomDb.Entities.MarketListEntity;
 
 import java.util.concurrent.Future;

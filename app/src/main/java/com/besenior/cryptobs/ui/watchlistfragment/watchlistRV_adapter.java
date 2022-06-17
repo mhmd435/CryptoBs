@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.watchlistfragment;
+package com.besenior.cryptobs.ui.watchlistfragment;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

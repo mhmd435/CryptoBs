@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.HomeFragment;
+package com.besenior.cryptobs.ui.HomeFragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -33,9 +33,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.besenior.cryptobs.RoomDb.Entities.MarketListEntity;
 import com.besenior.cryptobs.model.cryptolistmodel.DataItem;
 import com.besenior.cryptobs.viewmodel.AppViewModel;
-import com.besenior.cryptobs.HomeFragment.Adapters.TopCoinRvAdapter;
-import com.besenior.cryptobs.HomeFragment.Adapters.TopGainLosersAdapter;
-import com.besenior.cryptobs.HomeFragment.Adapters.sliderImageAdapter;
+import com.besenior.cryptobs.ui.HomeFragment.Adapters.TopCoinRvAdapter;
+import com.besenior.cryptobs.ui.HomeFragment.Adapters.TopGainLosersAdapter;
+import com.besenior.cryptobs.ui.HomeFragment.Adapters.sliderImageAdapter;
 import com.besenior.cryptobs.model.cryptolistmodel.AllMarketModel;
 import com.besenior.cryptobs.model.SliderImageModel;
 import com.besenior.cryptobs.MainActivity;
@@ -43,7 +43,6 @@ import com.besenior.cryptobs.R;
 import com.besenior.cryptobs.databinding.FragmentHomeBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -53,7 +52,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

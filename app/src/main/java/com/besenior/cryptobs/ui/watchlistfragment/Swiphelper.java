@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.watchlistfragment;
+package com.besenior.cryptobs.ui.watchlistfragment;
 
 import android.content.Context;
 import android.graphics.Canvas;

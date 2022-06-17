@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.otherFragments;
+package com.besenior.cryptobs.ui.otherFragments;
 
 import android.Manifest;
 import android.app.Activity;
@@ -32,7 +32,6 @@ import androidx.navigation.ui.NavigationUI;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

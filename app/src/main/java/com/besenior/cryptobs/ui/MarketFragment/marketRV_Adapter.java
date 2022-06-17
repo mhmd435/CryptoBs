@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.MarketFragment;
+package com.besenior.cryptobs.ui.MarketFragment;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

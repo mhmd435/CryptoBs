@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.otherFragments;
+package com.besenior.cryptobs.ui.otherFragments;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;

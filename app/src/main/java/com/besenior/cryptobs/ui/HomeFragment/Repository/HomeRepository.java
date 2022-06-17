@@ -1,9 +1,7 @@
-package com.besenior.cryptobs.HomeFragment.Repository;
+package com.besenior.cryptobs.ui.HomeFragment.Repository;
 
-import android.app.Application;
 import android.util.Log;
 
-import com.besenior.cryptobs.RoomDb.AppDatabase;
 import com.besenior.cryptobs.RoomDb.Entities.MarketDataEntity;
 import com.besenior.cryptobs.model.cryptomarketdataModel.CryptoMarketDataModel;
 import com.besenior.cryptobs.model.SliderImageModel;
@@ -19,8 +17,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
-import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;

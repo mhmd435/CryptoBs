@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#0A0320"
-        tools:context="com.besenior.cryptobs.watchlistfragment.WatchlistFragment">
+        tools:context=".ui.watchlistfragment.WatchlistFragment">
 
         <include
             android:id="@+id/include2"

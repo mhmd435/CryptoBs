@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.CryptoDetailFragment;
+package com.besenior.cryptobs.ui.CryptoDetailFragment;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;

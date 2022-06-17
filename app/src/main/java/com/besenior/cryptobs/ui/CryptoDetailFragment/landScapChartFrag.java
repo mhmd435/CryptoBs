@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.CryptoDetailFragment;
+package com.besenior.cryptobs.ui.CryptoDetailFragment;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.besenior.cryptobs.model.cryptolistmodel.DataItem;
 import com.besenior.cryptobs.R;

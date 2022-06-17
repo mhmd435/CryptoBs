@@ -216,7 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/nestedscroll_bg"
-                tools:context="com.besenior.cryptobs.MarketFragment.MarketFragment">
+                tools:context=".ui.MarketFragment.MarketFragment">
 
                 <!-- TODO: Update blank fragment layout -->
 

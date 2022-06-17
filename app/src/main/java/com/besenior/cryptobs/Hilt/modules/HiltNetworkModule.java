@@ -1,28 +1,17 @@
 package com.besenior.cryptobs.Hilt.modules;
 
-import android.app.Activity;
-import android.app.Application;
-
-import androidx.databinding.DataBindingUtil;
-
-import com.besenior.cryptobs.HomeFragment.Repository.HomeRepository;
-import com.besenior.cryptobs.R;
+import com.besenior.cryptobs.ui.HomeFragment.Repository.HomeRepository;
 import com.besenior.cryptobs.RoomDb.RoomDao;
-import com.besenior.cryptobs.databinding.ActivityMainBinding;
 import com.besenior.cryptobs.retrofit.RequestApi;
-import com.besenior.cryptobs.retrofit.ServiceGenerator;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ActivityComponent;
-import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;

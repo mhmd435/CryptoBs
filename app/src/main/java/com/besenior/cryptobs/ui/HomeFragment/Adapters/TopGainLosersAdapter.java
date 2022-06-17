@@ -1,4 +1,4 @@
-package com.besenior.cryptobs.HomeFragment.Adapters;
+package com.besenior.cryptobs.ui.HomeFragment.Adapters;
 
 import android.os.Bundle;
 
@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.besenior.cryptobs.HomeFragment.TopGainLoseFrag;
+import com.besenior.cryptobs.ui.HomeFragment.TopGainLoseFrag;
 
 import org.jetbrains.annotations.NotNull;
 
