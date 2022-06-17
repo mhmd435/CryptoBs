@@ -24,9 +24,15 @@ public class sliderImageAdapter extends RecyclerView.Adapter<sliderImageAdapter.
     LayoutInflater layoutInflater;
 
     ArrayList<SliderImageModel.PageViewImage> arrayList;
+    ArrayList<Integer> images;
 
     public sliderImageAdapter(ArrayList<SliderImageModel.PageViewImage> arrayList) {
         this.arrayList = arrayList;
+
+        images = new ArrayList<>();
+        images.add(R.drawable.a1);
+        images.add(R.drawable.a2);
+        images.add(R.drawable.a3);
     }
 
     @NonNull
@@ -44,12 +50,14 @@ public class sliderImageAdapter extends RecyclerView.Adapter<sliderImageAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull SliderImageViewHolder holder, int position) {
-        holder.bind(arrayList.get(position));
+//        holder.bind(arrayList.get(position));
+        holder.bind(images.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return 3;
+//        return arrayList.size();
     }
 
     static class SliderImageViewHolder extends RecyclerView.ViewHolder{
@@ -60,9 +68,9 @@ public class sliderImageAdapter extends RecyclerView.Adapter<sliderImageAdapter.
             this.sliderImageItemBinding = sliderImageItemBinding;
         }
 
-        public void bind(SliderImageModel.PageViewImage model) {
+        public void bind(Integer integer) {
             Glide.with(sliderImageItemBinding.getRoot().getContext())
-                    .load(model.getImg())
+                    .load(integer)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(sliderImageItemBinding.imageSlide);
             sliderImageItemBinding.executePendingBindings();

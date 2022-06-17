@@ -82,7 +82,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback(){
             @Override
             public void onAvailable(@NonNull Network network) {
-                Log.e("TAG", "onAvailable: ");
+//                Log.e("TAG", "onAvailable: ");
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -96,7 +96,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void onLost(@NonNull Network network) {
-                Log.e("TAG", "onLost: ");
+//                Log.e("TAG", "onLost: ");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

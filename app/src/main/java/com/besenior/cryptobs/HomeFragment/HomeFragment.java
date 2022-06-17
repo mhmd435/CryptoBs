@@ -3,6 +3,7 @@ package com.besenior.cryptobs.HomeFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -256,7 +257,11 @@ public class HomeFragment extends Fragment {
                             fragmentHomeBinding.viewPagerImageSlider.setOffscreenPageLimit(3);
                             fragmentHomeBinding.viewPagerImageSlider.setVisibility(View.VISIBLE);
 
-                            setupSliderIndicator(pageViewImages.size());
+                            for (SliderImageModel.PageViewImage s : pageViewImages) {
+                                Log.e("TAG", "onNext: " + s.getImg());
+                            }
+//                            setupSliderIndicator(pageViewImages.size());
+                            setupSliderIndicator(3);
 
                             fragmentHomeBinding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
                                 @Override
